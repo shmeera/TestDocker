@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testdocker
+  labels:
+    app: testdocker
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: testdocker
+  template:
+    metadata:
+      name: testdocker
+      labels:
+        app: testdocker
+    spec:
+      containers:
+        - name: testdocker
+          image: kmeera/testdocker:v0.000001
+          imagePullPolicy: IfNotPresent
+          ports:
+              - containerPort: 8080
+                protocol: TCP
+      restartPolicy: Always
